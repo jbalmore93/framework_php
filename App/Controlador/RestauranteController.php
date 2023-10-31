@@ -11,7 +11,11 @@ class RestauranteController extends Controller
     public function index()
     {
 $restaurantemodel = new Restaurante();
-return $restaurantemodel->all();
+return $restaurantemodel->create([
+            'nombre_cat'=>'Balmore',
+            'descripcion_cat'=>'Dueño',
+            'ruta_cat'=>'Hablar'
+]);
 
 
         return $this->view('home',[

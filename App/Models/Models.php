@@ -56,9 +56,23 @@ class Models
         return $this->query($sql)->first();
     }
 
-    public function where($column, $value){
-$sql = "Select * from {$this->table} where {$column} = '{$value}'";
-$this->query($sql);
-return $this;
+    public function where($column, $value)
+    {
+        $sql = "Select * from {$this->table} where {$column} = '{$value}'";
+        $this->query($sql);
+        return $this;
+    }
+
+    public function create($data)
+    {
+        $columns = array_keys($data);
+        $columns = implode(',', $columns);
+
+        $values = array_values($data);
+        $values = "'" . implode("','", $values) . "'";
+
+        $sql = "INSERT INTO {$this->table} ({$columns}) VALUES ({$values})";
+        $this->query($sql);
+        return $values;
     }
 }
